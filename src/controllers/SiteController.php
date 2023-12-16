@@ -17,8 +17,7 @@ class SiteController
     }
 
     /**
-     * @return string
-     * @throws \Throwable
+     * @return HtmlResponse
      */
     public function actionIndex(): HtmlResponse
     {

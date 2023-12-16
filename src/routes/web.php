@@ -1,11 +1,12 @@
 <?php
 
+use trinity\contracts\ContainerInterface;
 use trinity\contracts\RoutesCollectionInterface;
 use trinity\router\RoutesCollection;
 use src\controllers\SiteController;
 
 /**
- * @var \trinity\contracts\ContainerInterface $container
+ * @var ContainerInterface $container
  * @var RoutesCollection $routesCollection
  */
 

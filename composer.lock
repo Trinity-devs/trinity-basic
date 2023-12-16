@@ -1490,16 +1490,16 @@
         },
         {
             "name": "trinity-devs/framework",
-            "version": "0.1.2",
+            "version": "0.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Trinity-devs/framework.git",
-                "reference": "c3ff836e9dbe3991da8026cdce22965f325fc14c"
+                "reference": "097f9c55be43b3c90bae93ce8d92d89a0cbd153c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Trinity-devs/framework/zipball/c3ff836e9dbe3991da8026cdce22965f325fc14c",
-                "reference": "c3ff836e9dbe3991da8026cdce22965f325fc14c",
+                "url": "https://api.github.com/repos/Trinity-devs/framework/zipball/097f9c55be43b3c90bae93ce8d92d89a0cbd153c",
+                "reference": "097f9c55be43b3c90bae93ce8d92d89a0cbd153c",
                 "shasum": ""
             },
             "require": {
@@ -1529,9 +1529,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Trinity-devs/framework/issues",
-                "source": "https://github.com/Trinity-devs/framework/tree/0.1.2"
+                "source": "https://github.com/Trinity-devs/framework/tree/0.1.3"
             },
-            "time": "2023-12-16T13:37:17+00:00"
+            "time": "2023-12-16T18:35:17+00:00"
         }
     ],
     "packages-dev": [
