@@ -39,6 +39,7 @@ return [
     ViewRendererInterface::class => function (ContainerInterface $container) {
         return new View(
             $container->singleton(RouterInterface::class),
+            $container->singleton(FileHandlerInterface::class),
         );
     },
     DatabaseConnectionInterface::class => function () {
