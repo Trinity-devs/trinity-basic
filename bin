@@ -1,0 +1,35 @@
+#!/usr/bin/env php
+<?php
+
+use trinity\contracts\ConsoleInputInterface;
+use trinity\contracts\ConsoleKernelInterface;
+use trinity\contracts\eventsContracts\EventDispatcherInterface;
+use trinity\contracts\FileHandlerInterface;
+use trinity\DIContainer;
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+
+const PROJECT_ROOT = __DIR__ . '/';
+const PROJECT_SOURCE_ROOT = __DIR__ . '/src/';
+require_once __DIR__ . '/vendor/autoload.php';
+
+$container = DIContainer::createContainer(require_once __DIR__ . '/config/di-container.php');
+
+$container->singleton(EventDispatcherInterface::class)
+    ->configure(require __DIR__ . '/config/events.php');
+
+$container->singleton(ConsoleInputInterface::class);
+
+$kernel = $container->singleton(ConsoleKernelInterface::class);
+
+$kernel->registerCommandNamespaces([
+    PROJECT_SOURCE_ROOT . 'commands',
+]);
+
+$kernel->registerPlugins(require_once __DIR__ . '/config/command-plugins.php');
+
+$status = $kernel->handle();
+
+$kernel->terminate($status);

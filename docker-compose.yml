@@ -1,0 +1,59 @@
+version: '3.7'
+services:
+
+  php-fpm:
+    image: ${REGISTRY}/${INDEX}-php-fpm:${IMAGE_TAG}
+    environment:
+      ENV: ${ENV}
+      API_AUTH_KEY: ${API_AUTH_KEY}
+      DB_HOST: ${DB_HOST}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DEBUG: ${DEBUG}
+    volumes:
+      - ./:/var/www/html
+
+  php-cli:
+    image: ${REGISTRY}/${INDEX}-php-cli:${IMAGE_TAG}
+    environment:
+      ENV: ${ENV}
+      PHINX_DB_HOST: ${DB_HOST}
+      PHINX_DB_PORT: ${DB_PORT}
+      PHINX_DB_NAME: ${DB_NAME}
+      PHINX_DB_USER: ${DB_USER}
+      PHINX_DB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./:/app
+
+  nginx:
+    image: ${REGISTRY}/${INDEX}-nginx:${IMAGE_TAG}
+    ports:
+      - ${APP_WEB_PORT}:80
+    volumes:
+      - ./:/var/www/html
+
+  swagger:
+    image: swaggerapi/swagger-ui:${IMAGE_TAG}
+    environment:
+      URL: /swagger/spec.yml
+    ports:
+      - ${SWAGGER_UI_PORT}:8080
+    volumes:
+      - ./swagger-ui:/usr/share/nginx/html/swagger
+
+  mariadb:
+    image: mariadb:10.6.14
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    ports:
+      - ${DB_PORT}:3306
+    volumes:
+      - mysql:/var/lib/mysql
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_general_ci']
+
+volumes:
+  mysql:
